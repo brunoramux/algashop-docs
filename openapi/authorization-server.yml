@@ -1,0 +1,527 @@
+openapi: 3.0.3
+
+info:
+  title: AlgaShop - Authorization Server
+  description: |
+    Especificação OpenAPI dos endpoints padrão do **Spring Authorization Server** 
+    implementando **OAuth 2.1**. 
+
+    ### Prefixos de caminho padrão
+    | Grupo  | Prefixo   |
+    |--------|-----------|
+    | OAuth2 | `/oauth2` |
+
+  version: "1.0"
+  contact:
+    name: Spring Authorization Server Docs
+    url: https://docs.spring.io/spring-security/reference/servlet/oauth2/authorization-server/index.html
+
+servers:
+  - url: http://127.0.0.1:8081
+    description: Servidor local de desenvolvimento
+
+tags:
+  - name: OAuth2 Core
+    description: Endpoints principais do protocolo OAuth 2.1
+  - name: Token Management
+    description: Introspecção e revogação de tokens
+  - name: Discovery
+    description: Endpoints de descoberta e metadados
+
+paths:
+  /oauth2/authorize:
+    get:
+      tags: [OAuth2 Core]
+      summary: Authorization Endpoint
+      description: |
+        Inicia o fluxo Authorization Code (com ou sem PKCE).
+        O user-agent é redirecionado para a página de login/consentimento do servidor.
+        Especificado em **RFC 6749 §3.1** e **RFC 9126** (PAR).
+      parameters:
+        - name: response_type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [code]
+          description: Deve ser `code`.
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          example: oidc-client
+        - name: redirect_uri
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uri
+          example: http://127.0.0.1:8080/login/oauth2/code/oidc-client
+        - name: scope
+          in: query
+          required: false
+          schema:
+            type: string
+          example: openid profile email
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Valor opaco para proteger contra CSRF.
+        - name: code_challenge
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Desafio PKCE (Base64URL do SHA-256 do code_verifier).
+        - name: code_challenge_method
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [S256]
+          description: Método PKCE. Apenas `S256` é suportado.
+        - name: nonce
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Valor OIDC para prevenir replay attacks no ID Token.
+        - name: prompt
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [none, login, consent, select_account]
+        - name: max_age
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Tempo máximo de autenticação em segundos (OIDC).
+      responses:
+        "302":
+          description: |
+            Redirecionamento com `code` e `state` na URL de retorno.
+            ```
+            {redirect_uri}?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
+            ```
+        "302 (error)":
+          description: |
+            Redirecionamento com erro.
+            ```
+            {redirect_uri}?error=access_denied&state=xyz
+            ```
+  /oauth2/token:
+    post:
+      tags: [OAuth2 Core]
+      summary: Token Endpoint
+      description: |
+        Emite Access Token, Refresh Token e/ou ID Token.
+        Suporta os grant types:
+        - `authorization_code`
+        - `client_credentials`
+        - `refresh_token`
+
+        Autenticação do cliente via `Authorization: Basic`.
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [grant_type]
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                    - authorization_code
+                    - client_credentials
+                    - refresh_token
+                  example: authorization_code
+                code:
+                  type: string
+                  description: Obrigatório para `authorization_code`.
+                redirect_uri:
+                  type: string
+                  format: uri
+                  example: http://127.0.0.1:4200/login/oauth2/code/oidc-client
+                  description: Obrigatório para `authorization_code` se enviado na requisição de autorização.
+                code_verifier:
+                  type: string
+                  description: Obrigatório para `authorization_code` com PKCE.
+                refresh_token:
+                  type: string
+                  description: Obrigatório para `refresh_token`.
+                scope:
+                  type: string
+                  description: Escopos solicitados (opcional para `client_credentials`).
+            examples:
+              authorization_code:
+                summary: Authorization Code + PKCE
+                value:
+                  grant_type: authorization_code
+                  code: SplxlOBeZQQYbYS6WxSbIA
+                  redirect_uri: http://127.0.0.1:4200/login/oauth2/code/oidc-client
+                  code_verifier: dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+              client_credentials:
+                summary: Client Credentials
+                value:
+                  grant_type: client_credentials
+                  scope: read write
+              refresh_token:
+                summary: Refresh Token
+                value:
+                  grant_type: refresh_token
+                  refresh_token: tGzv3JOkF0XG5Qx2TlKWIA
+      responses:
+        "200":
+          description: Token emitido com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        "400":
+          $ref: "#/components/responses/OAuth2Error"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+  /oauth2/introspect:
+    post:
+      tags: [Token Management]
+      summary: Token Introspection Endpoint
+      description: |
+        Permite a um Resource Server verificar a validade e os metadados de um token opaco.
+        Especificado em **RFC 7662**.
+        Requer autenticação do cliente.
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [token]
+              properties:
+                token:
+                  type: string
+                  description: O token a ser introspecionado.
+                token_type_hint:
+                  type: string
+                  enum: [access_token, refresh_token]
+      responses:
+        "200":
+          description: Resultado da introspecção.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IntrospectionResponse"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+  /oauth2/revoke:
+    post:
+      tags: [Token Management]
+      summary: Token Revocation Endpoint
+      description: |
+        Revoga um access token ou refresh token.
+        Especificado em **RFC 7009**.
+        Requer autenticação do cliente.
+      security:
+        - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [token]
+              properties:
+                token:
+                  type: string
+                  description: Token a ser revogado.
+                token_type_hint:
+                  type: string
+                  enum: [access_token, refresh_token]
+      responses:
+        "200":
+          description: Token revogado com sucesso (corpo vazio).
+        "400":
+          $ref: "#/components/responses/OAuth2Error"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+  /oauth2/jwks:
+    get:
+      tags: [OAuth2 Core]
+      summary: JWK Set Endpoint
+      description: |
+        Expõe as chaves públicas utilizadas para assinar tokens JWT.
+        Usado pelos Resource Servers e clientes para validação local de tokens.
+        Especificado em **RFC 7517**.
+      security: []
+      responses:
+        "200":
+          description: Conjunto de chaves JWK.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JWKSet"
+  /.well-known/oauth-authorization-server:
+    get:
+      tags: [Discovery]
+      summary: OAuth2 Authorization Server Metadata
+      description: |
+        Retorna os metadados do Authorization Server.
+        Especificado em **RFC 8414**.
+      security: []
+      responses:
+        "200":
+          description: Metadados do servidor de autorização.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthorizationServerMetadata"
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Autenticação do cliente OAuth2 via `client_id:client_secret` em Base64.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Access Token JWT emitido pelo Authorization Server.
+  responses:
+    OAuth2Error:
+      description: Resposta de erro OAuth2.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OAuth2ErrorResponse"
+    UnauthorizedError:
+      description: Autenticação do cliente falhou ou token inválido.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/OAuth2ErrorResponse"
+  schemas:
+    TokenResponse:
+      type: object
+      required: [access_token, token_type]
+      properties:
+        access_token:
+          type: string
+          description: JWT de acesso.
+        token_type:
+          type: string
+          enum: [Bearer]
+        expires_in:
+          type: integer
+          description: Tempo de vida em segundos.
+          example: 300
+        refresh_token:
+          type: string
+          description: Token de atualização (quando aplicável).
+        scope:
+          type: string
+          description: Escopos concedidos.
+          example: openid profile email
+        id_token:
+          type: string
+          description: JWT do ID Token (presente quando escopo `openid` foi solicitado).
+    IntrospectionResponse:
+      type: object
+      required: [active]
+      properties:
+        active:
+          type: boolean
+          description: "`true` se o token é válido e ativo."
+        scope:
+          type: string
+        client_id:
+          type: string
+        username:
+          type: string
+        token_type:
+          type: string
+          enum: [Bearer]
+        exp:
+          type: integer
+          description: Unix timestamp de expiração.
+        iat:
+          type: integer
+          description: Unix timestamp de emissão.
+        nbf:
+          type: integer
+          description: Unix timestamp de "não antes de".
+        sub:
+          type: string
+          description: Subject (identificador do usuário ou cliente).
+        aud:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+        iss:
+          type: string
+          format: uri
+        jti:
+          type: string
+    JWKSet:
+      type: object
+      required: [keys]
+      properties:
+        keys:
+          type: array
+          items:
+            type: object
+            required: [kty, use, kid, alg]
+            properties:
+              kty:
+                type: string
+                enum: [RSA, EC, OKP]
+                example: RSA
+              use:
+                type: string
+                enum: [sig, enc]
+                example: sig
+              kid:
+                type: string
+                description: Key ID.
+                example: "1"
+              alg:
+                type: string
+                description: Algoritmo de assinatura.
+                example: RS256
+              n:
+                type: string
+                description: RSA modulus (Base64URL).
+              e:
+                type: string
+                description: RSA public exponent (Base64URL).
+                example: AQAB
+              x5c:
+                type: array
+                items:
+                  type: string
+              x5t:
+                type: string
+              "x5t#S256":
+                type: string
+    AuthorizationServerMetadata:
+      type: object
+      required:
+        - issuer
+        - authorization_endpoint
+        - token_endpoint
+        - jwks_uri
+        - response_types_supported
+        - subject_types_supported
+        - id_token_signing_alg_values_supported
+      properties:
+        issuer:
+          type: string
+          format: uri
+          example: http://localhost:9000
+        authorization_endpoint:
+          type: string
+          format: uri
+          example: http://localhost:9000/oauth2/authorize
+        device_authorization_endpoint:
+          type: string
+          format: uri
+          example: http://localhost:9000/oauth2/device_authorization
+        token_endpoint:
+          type: string
+          format: uri
+          example: http://localhost:9000/oauth2/token
+        token_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+          example: [client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt]
+        jwks_uri:
+          type: string
+          format: uri
+          example: http://localhost:9000/oauth2/jwks
+        scopes_supported:
+          type: array
+          items:
+            type: string
+          example: [openid, profile, email, address, phone]
+        response_types_supported:
+          type: array
+          items:
+            type: string
+          example: [code]
+        grant_types_supported:
+          type: array
+          items:
+            type: string
+          example:
+            - authorization_code
+            - client_credentials
+            - refresh_token
+            - urn:ietf:params:oauth:grant-type:device_code
+        revocation_endpoint:
+          type: string
+          format: uri
+          example: http://localhost:9000/oauth2/revoke
+        revocation_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+        introspection_endpoint:
+          type: string
+          format: uri
+          example: http://localhost:9000/oauth2/introspect
+        introspection_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+        code_challenge_methods_supported:
+          type: array
+          items:
+            type: string
+          example: [S256]
+        subject_types_supported:
+          type: array
+          items:
+            type: string
+          example: [public]
+        id_token_signing_alg_values_supported:
+          type: array
+          items:
+            type: string
+          example: [RS256]
+        tls_client_certificate_bound_access_tokens:
+          type: boolean
+    OAuth2ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          enum:
+            - invalid_request
+            - invalid_client
+            - invalid_grant
+            - unauthorized_client
+            - unsupported_grant_type
+            - invalid_scope
+            - access_denied
+            - server_error
+            - temporarily_unavailable
+          example: invalid_client
+        error_description:
+          type: string
+          example: "Client authentication failed."
+        error_uri:
+          type: string
+          format: uri
