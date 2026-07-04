@@ -1,0 +1,1036 @@
+{
+  "info": {
+    "_postman_id": "c48026e8-91dd-41b9-8b7f-10cfa7323bc2",
+    "name": "AlgaShop - Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33462063"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "orders",
+              "item": [
+                {
+                  "name": "{orderId}",
+                  "item": [
+                    {
+                      "name": "invoice",
+                      "item": [
+                        {
+                          "name": "Generate invoice for an order",
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"customerId\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"payer\": {\n    \"fullName\": \"John Doe\",\n    \"document\": \"255-08-0578\",\n    \"phone\": \"5511912341234\",\n    \"email\": \"john.doe@email.com\",\n    \"address\": {\n      \"street\": \"Bourbon Street\",\n      \"number\": \"1200\",\n      \"neighborhood\": \"North Ville\",\n      \"city\": \"Yostfort\",\n      \"state\": \"South Carolina\",\n      \"zipCode\": \"70283\",\n      \"complement\": \"Apt. 901\"\n    }\n  },\n  \"paymentSettings\": {\n    \"method\": \"CREDIT_CARD\",\n    \"creditCardId\": \"18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\"\n  },\n  \"items\": [\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    },\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/orders/:orderId/invoice",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                ":orderId",
+                                "invoice"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orderId",
+                                  "value": "01226N0640J7Q"
+                                }
+                              ]
+                            },
+                            "description": "Generate invoice for an order"
+                          },
+                          "response": [
+                            {
+                              "name": "Created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"customerId\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"payer\": {\n    \"fullName\": \"John Doe\",\n    \"document\": \"255-08-0578\",\n    \"phone\": \"5511912341234\",\n    \"email\": \"john.doe@email.com\",\n    \"address\": {\n      \"street\": \"Bourbon Street\",\n      \"number\": \"1200\",\n      \"neighborhood\": \"North Ville\",\n      \"city\": \"Yostfort\",\n      \"state\": \"South Carolina\",\n      \"zipCode\": \"70283\",\n      \"complement\": \"Apt. 901\"\n    }\n  },\n  \"paymentSettings\": {\n    \"method\": \"CREDIT_CARD\",\n    \"creditCardId\": \"18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\"\n  },\n  \"items\": [\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    },\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/orders/:orderId/invoice",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "orders",
+                                    ":orderId",
+                                    "invoice"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orderId",
+                                      "value": "01226N0640J7Q"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"orderId\": \"01226N0640J7Q\",\n  \"customerId\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"issuedAt\": \"2025-09-11T10:00:00Z\",\n  \"expiresAt\": \"2025-09-14T10:00:00Z\",\n  \"totalAmount\": 199.9,\n  \"status\": \"UNPAID\",\n  \"payer\": {\n    \"fullName\": \"John Doe\",\n    \"document\": \"255-08-0578\",\n    \"phone\": \"5511912341234\",\n    \"email\": \"john.doe@email.com\",\n    \"address\": {\n      \"street\": \"Bourbon Street\",\n      \"number\": \"1200\",\n      \"neighborhood\": \"North Ville\",\n      \"city\": \"Yostfort\",\n      \"state\": \"South Carolina\",\n      \"zipCode\": \"70283\",\n      \"complement\": \"Apt. 901\"\n    }\n  },\n  \"items\": [\n    {\n      \"number\": 1,\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    },\n    {\n      \"number\": 1,\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    }\n  ],\n  \"paidAt\": \"2005-12-21T23:19:41.177Z\",\n  \"canceledAt\": \"2016-06-09T03:32:18.121Z\",\n  \"cancelReason\": \"Payment refunded\",\n  \"paymentSettings\": {\n    \"id\": \"38fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"method\": \"CREDIT_CARD\",\n    \"creditCardId\": \"18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"gatewayCode\": \"GW-328982\"\n  }\n}"
+                            },
+                            {
+                              "name": "Invalid request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"customerId\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"payer\": {\n    \"fullName\": \"John Doe\",\n    \"document\": \"255-08-0578\",\n    \"phone\": \"5511912341234\",\n    \"email\": \"john.doe@email.com\",\n    \"address\": {\n      \"street\": \"Bourbon Street\",\n      \"number\": \"1200\",\n      \"neighborhood\": \"North Ville\",\n      \"city\": \"Yostfort\",\n      \"state\": \"South Carolina\",\n      \"zipCode\": \"70283\",\n      \"complement\": \"Apt. 901\"\n    }\n  },\n  \"paymentSettings\": {\n    \"method\": \"CREDIT_CARD\",\n    \"creditCardId\": \"18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\"\n  },\n  \"items\": [\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    },\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/orders/:orderId/invoice",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "orders",
+                                    ":orderId",
+                                    "invoice"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orderId",
+                                      "value": "01226N0640J7Q"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            },
+                            {
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"customerId\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"payer\": {\n    \"fullName\": \"John Doe\",\n    \"document\": \"255-08-0578\",\n    \"phone\": \"5511912341234\",\n    \"email\": \"john.doe@email.com\",\n    \"address\": {\n      \"street\": \"Bourbon Street\",\n      \"number\": \"1200\",\n      \"neighborhood\": \"North Ville\",\n      \"city\": \"Yostfort\",\n      \"state\": \"South Carolina\",\n      \"zipCode\": \"70283\",\n      \"complement\": \"Apt. 901\"\n    }\n  },\n  \"paymentSettings\": {\n    \"method\": \"CREDIT_CARD\",\n    \"creditCardId\": \"18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\"\n  },\n  \"items\": [\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    },\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/orders/:orderId/invoice",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "orders",
+                                    ":orderId",
+                                    "invoice"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orderId",
+                                      "value": "01226N0640J7Q"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            },
+                            {
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"customerId\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"payer\": {\n    \"fullName\": \"John Doe\",\n    \"document\": \"255-08-0578\",\n    \"phone\": \"5511912341234\",\n    \"email\": \"john.doe@email.com\",\n    \"address\": {\n      \"street\": \"Bourbon Street\",\n      \"number\": \"1200\",\n      \"neighborhood\": \"North Ville\",\n      \"city\": \"Yostfort\",\n      \"state\": \"South Carolina\",\n      \"zipCode\": \"70283\",\n      \"complement\": \"Apt. 901\"\n    }\n  },\n  \"paymentSettings\": {\n    \"method\": \"CREDIT_CARD\",\n    \"creditCardId\": \"18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\"\n  },\n  \"items\": [\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    },\n    {\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/orders/:orderId/invoice",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "orders",
+                                    ":orderId",
+                                    "invoice"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orderId",
+                                      "value": "01226N0640J7Q"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "/api/v1/orders/:orderId/invoice",
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/orders/:orderId/invoice",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "orders",
+                                ":orderId",
+                                "invoice"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "orderId",
+                                  "value": "01226N0640J7Q"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/orders/:orderId/invoice",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "orders",
+                                    ":orderId",
+                                    "invoice"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orderId",
+                                      "value": "01226N0640J7Q"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"orderId\": \"01226N0640J7Q\",\n  \"customerId\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"issuedAt\": \"2025-09-11T10:00:00Z\",\n  \"expiresAt\": \"2025-09-14T10:00:00Z\",\n  \"totalAmount\": 199.9,\n  \"status\": \"UNPAID\",\n  \"payer\": {\n    \"fullName\": \"John Doe\",\n    \"document\": \"255-08-0578\",\n    \"phone\": \"5511912341234\",\n    \"email\": \"john.doe@email.com\",\n    \"address\": {\n      \"street\": \"Bourbon Street\",\n      \"number\": \"1200\",\n      \"neighborhood\": \"North Ville\",\n      \"city\": \"Yostfort\",\n      \"state\": \"South Carolina\",\n      \"zipCode\": \"70283\",\n      \"complement\": \"Apt. 901\"\n    }\n  },\n  \"items\": [\n    {\n      \"number\": 1,\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    },\n    {\n      \"number\": 1,\n      \"name\": \"Notebook H11 - x2\",\n      \"amount\": 4100.9\n    }\n  ],\n  \"paidAt\": \"2005-12-21T23:19:41.177Z\",\n  \"canceledAt\": \"2016-06-09T03:32:18.121Z\",\n  \"cancelReason\": \"Payment refunded\",\n  \"paymentSettings\": {\n    \"id\": \"38fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"method\": \"CREDIT_CARD\",\n    \"creditCardId\": \"18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"gatewayCode\": \"GW-328982\"\n  }\n}"
+                            },
+                            {
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/orders/:orderId/invoice",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "orders",
+                                    ":orderId",
+                                    "invoice"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "orderId",
+                                      "value": "01226N0640J7Q"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "customers",
+              "item": [
+                {
+                  "name": "{customerId}",
+                  "item": [
+                    {
+                      "name": "credit-cards",
+                      "item": [
+                        {
+                          "name": "{creditCardId}",
+                          "item": [
+                            {
+                              "name": "/api/v1/customers/:customerId/credit-cards/:creditCardId",
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards/:creditCardId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":customerId",
+                                    "credit-cards",
+                                    ":creditCardId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "customerId",
+                                      "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    },
+                                    {
+                                      "key": "creditCardId",
+                                      "value": "18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards/:creditCardId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":customerId",
+                                        "credit-cards",
+                                        ":creditCardId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "customerId",
+                                          "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        },
+                                        {
+                                          "key": "creditCardId",
+                                          "value": "18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n  \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"lastNumbers\": \"0069\",\n  \"expMonth\": \"string\",\n  \"expYear\": \"string\",\n  \"brand\": \"Master\",\n  \"createdAt\": \"2025-09-11T10:00:00Z\"\n}"
+                                },
+                                {
+                                  "name": "Resource not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards/:creditCardId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":customerId",
+                                        "credit-cards",
+                                        ":creditCardId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "customerId",
+                                          "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        },
+                                        {
+                                          "key": "creditCardId",
+                                          "value": "18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                                }
+                              ]
+                            },
+                            {
+                              "name": "/api/v1/customers/:customerId/credit-cards/:creditCardId",
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards/:creditCardId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":customerId",
+                                    "credit-cards",
+                                    ":creditCardId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "customerId",
+                                      "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    },
+                                    {
+                                      "key": "creditCardId",
+                                      "value": "18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards/:creditCardId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":customerId",
+                                        "credit-cards",
+                                        ":creditCardId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "customerId",
+                                          "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        },
+                                        {
+                                          "key": "creditCardId",
+                                          "value": "18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "body": ""
+                                },
+                                {
+                                  "name": "Resource not found",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards/:creditCardId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "customers",
+                                        ":customerId",
+                                        "credit-cards",
+                                        ":creditCardId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "customerId",
+                                          "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        },
+                                        {
+                                          "key": "creditCardId",
+                                          "value": "18fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "/api/v1/customers/:customerId/credit-cards",
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":customerId",
+                                "credit-cards"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "customerId",
+                                  "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":customerId",
+                                    "credit-cards"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "customerId",
+                                      "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "[\n  {\n    \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"lastNumbers\": \"0069\",\n    \"expMonth\": \"string\",\n    \"expYear\": \"string\",\n    \"brand\": \"Master\",\n    \"createdAt\": \"2025-09-11T10:00:00Z\"\n  },\n  {\n    \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"lastNumbers\": \"0069\",\n    \"expMonth\": \"string\",\n    \"expYear\": \"string\",\n    \"brand\": \"Master\",\n    \"createdAt\": \"2025-09-11T10:00:00Z\"\n  }\n]"
+                            },
+                            {
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":customerId",
+                                    "credit-cards"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "customerId",
+                                      "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "/api/v1/customers/:customerId/credit-cards",
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tokenizedCard\": \"14d8b3dc5aff\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "customers",
+                                ":customerId",
+                                "credit-cards"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "customerId",
+                                  "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"tokenizedCard\": \"14d8b3dc5aff\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":customerId",
+                                    "credit-cards"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "customerId",
+                                      "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"lastNumbers\": \"0069\",\n  \"expMonth\": \"string\",\n  \"expYear\": \"string\",\n  \"brand\": \"Master\",\n  \"createdAt\": \"2025-09-11T10:00:00Z\"\n}"
+                            },
+                            {
+                              "name": "Invalid request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"tokenizedCard\": \"14d8b3dc5aff\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":customerId",
+                                    "credit-cards"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "customerId",
+                                      "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            },
+                            {
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"tokenizedCard\": \"14d8b3dc5aff\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/customers/:customerId/credit-cards",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "customers",
+                                    ":customerId",
+                                    "credit-cards"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "customerId",
+                                      "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8082"
+    }
+  ]
+}

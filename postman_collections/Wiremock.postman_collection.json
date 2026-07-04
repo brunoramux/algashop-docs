@@ -1,0 +1,49 @@
+{
+  "info": {
+    "_postman_id": "bda6f293-02bb-4d47-a8a1-ca5d3a11cede",
+    "name": "Wiremock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33462063"
+  },
+  "item": [
+    {
+      "name": "http://localhost:8780/api/delivery-cost",
+      "protocolProfileBehavior": {
+        "followRedirects": true,
+        "disableUrlEncoding": false,
+        "disableCookies": false
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"originZipCode\": \"12345-678\", \"destinationZipCode\": \"98765-432\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8780/api/delivery-cost",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8780",
+          "path": [
+            "api",
+            "delivery-cost"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

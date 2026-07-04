@@ -1,0 +1,1710 @@
+{
+  "info": {
+    "_postman_id": "07f8c6bf-5347-4576-8b2d-ece238923a42",
+    "name": "AlgaShop - Authorization Server",
+    "description": "Especificação OpenAPI dos endpoints padrão do **Spring Authorization Server** \nimplementando **OAuth 2.1**. \n\n### Prefixos de caminho padrão\n| Grupo  | Prefixo   |\n|--------|-----------|\n| OAuth2 | `/oauth2` |\n\n\nContact Support:\n Name: Spring Authorization Server Docs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33462063"
+  },
+  "item": [
+    {
+      "name": "oauth2",
+      "item": [
+        {
+          "name": "authorize",
+          "item": [
+            {
+              "name": "Authorization Endpoint",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/authorize?response_type=code&client_id=algashop-ecommerce-web&redirect_uri=http://algashop-ecommerce:9080/login/oauth2/code/algashop-ecommerce-web&scope=orders:read orders:write",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "authorize"
+                  ],
+                  "query": [
+                    {
+                      "key": "response_type",
+                      "value": "code",
+                      "description": "Deve ser `code`."
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "algashop-ecommerce-web"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "http://algashop-ecommerce:9080/login/oauth2/code/algashop-ecommerce-web"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "orders:read orders:write"
+                    },
+                    {
+                      "key": "state",
+                      "value": "string",
+                      "description": "Valor opaco para proteger contra CSRF.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "string",
+                      "description": "Desafio PKCE (Base64URL do SHA-256 do code_verifier).",
+                      "disabled": true
+                    },
+                    {
+                      "key": "code_challenge_method",
+                      "value": "S256",
+                      "description": "Método PKCE. Apenas `S256` é suportado.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "nonce",
+                      "value": "string",
+                      "description": "Valor OIDC para prevenir replay attacks no ID Token.",
+                      "disabled": true
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "login",
+                      "disabled": true
+                    },
+                    {
+                      "key": "max_age",
+                      "value": "6628",
+                      "description": "Tempo máximo de autenticação em segundos (OIDC).",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Inicia o fluxo Authorization Code (com ou sem PKCE).\nO user-agent é redirecionado para a página de login/consentimento do servidor.\nEspecificado em **RFC 6749 §3.1** e **RFC 9126** (PAR).\n"
+              },
+              "response": [
+                {
+                  "name": "Redirecionamento com `code` e `state` na URL de retorno.\n```\n{redirect_uri}?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz\n```",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/authorize?response_type=code&client_id=oidc-client&redirect_uri=http://127.0.0.1:8080/login/oauth2/code/oidc-client&scope=openid profile email&state=string&code_challenge=string&code_challenge_method=S256&nonce=string&prompt=login&max_age=6628",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "authorize"
+                      ],
+                      "query": [
+                        {
+                          "description": "Deve ser `code`.",
+                          "key": "response_type",
+                          "value": "code"
+                        },
+                        {
+                          "key": "client_id",
+                          "value": "oidc-client"
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:8080/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "openid profile email"
+                        },
+                        {
+                          "description": "Valor opaco para proteger contra CSRF.",
+                          "key": "state",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Desafio PKCE (Base64URL do SHA-256 do code_verifier).",
+                          "key": "code_challenge",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Método PKCE. Apenas `S256` é suportado.",
+                          "key": "code_challenge_method",
+                          "value": "S256"
+                        },
+                        {
+                          "description": "Valor OIDC para prevenir replay attacks no ID Token.",
+                          "key": "nonce",
+                          "value": "string"
+                        },
+                        {
+                          "key": "prompt",
+                          "value": "login"
+                        },
+                        {
+                          "description": "Tempo máximo de autenticação em segundos (OIDC).",
+                          "key": "max_age",
+                          "value": "6628"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Found",
+                  "code": 302,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Redirecionamento com erro.\n```\n{redirect_uri}?error=access_denied&state=xyz\n```",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/authorize?response_type=code&client_id=oidc-client&redirect_uri=http://127.0.0.1:8080/login/oauth2/code/oidc-client&scope=openid profile email&state=string&code_challenge=string&code_challenge_method=S256&nonce=string&prompt=login&max_age=6628",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "authorize"
+                      ],
+                      "query": [
+                        {
+                          "description": "Deve ser `code`.",
+                          "key": "response_type",
+                          "value": "code"
+                        },
+                        {
+                          "key": "client_id",
+                          "value": "oidc-client"
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:8080/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "openid profile email"
+                        },
+                        {
+                          "description": "Valor opaco para proteger contra CSRF.",
+                          "key": "state",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Desafio PKCE (Base64URL do SHA-256 do code_verifier).",
+                          "key": "code_challenge",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Método PKCE. Apenas `S256` é suportado.",
+                          "key": "code_challenge_method",
+                          "value": "S256"
+                        },
+                        {
+                          "description": "Valor OIDC para prevenir replay attacks no ID Token.",
+                          "key": "nonce",
+                          "value": "string"
+                        },
+                        {
+                          "key": "prompt",
+                          "value": "login"
+                        },
+                        {
+                          "description": "Tempo máximo de autenticação em segundos (OIDC).",
+                          "key": "max_age",
+                          "value": "6628"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Token Endpoint",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials"
+                    },
+                    {
+                      "description": "Obrigatório para `authorization_code`.",
+                      "key": "code",
+                      "value": "string",
+                      "disabled": true
+                    },
+                    {
+                      "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                      "key": "redirect_uri",
+                      "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client",
+                      "disabled": true
+                    },
+                    {
+                      "description": "Obrigatório para `authorization_code` com PKCE.",
+                      "key": "code_verifier",
+                      "value": "string",
+                      "disabled": true
+                    },
+                    {
+                      "description": "Obrigatório para `refresh_token`.",
+                      "key": "refresh_token",
+                      "value": "string",
+                      "disabled": true
+                    },
+                    {
+                      "description": "Escopos solicitados (opcional para `client_credentials`).",
+                      "key": "scope",
+                      "value": "products:read products:write shopping-carts:read shopping-carts:write customers:read customers:write categories:read categories:write"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                },
+                "description": "Emite Access Token, Refresh Token e/ou ID Token.\nSuporta os grant types:\n- `authorization_code`\n- `client_credentials`\n- `refresh_token`\n\nAutenticação do cliente via `Authorization: Basic`.\n"
+              },
+              "response": [
+                {
+                  "name": "Token emitido com sucesso.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code`.",
+                          "key": "code",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` com PKCE.",
+                          "key": "code_verifier",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `refresh_token`.",
+                          "key": "refresh_token",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Escopos solicitados (opcional para `client_credentials`).",
+                          "key": "scope",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 300,\n  \"refresh_token\": \"string\",\n  \"scope\": \"openid profile email\",\n  \"id_token\": \"string\"\n}"
+                },
+                {
+                  "name": "Resposta de erro OAuth2.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code`.",
+                          "key": "code",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` com PKCE.",
+                          "key": "code_verifier",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `refresh_token`.",
+                          "key": "refresh_token",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Escopos solicitados (opcional para `client_credentials`).",
+                          "key": "scope",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed.\",\n  \"error_uri\": \"https://LQEKQhcHWJSCnJCfLcqBxBRv.gsTY6L+ucygmcHX8f2xkYv-Pne6VAUlLI31Zwxxls\"\n}"
+                },
+                {
+                  "name": "Autenticação do cliente falhou ou token inválido.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code`.",
+                          "key": "code",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` com PKCE.",
+                          "key": "code_verifier",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `refresh_token`.",
+                          "key": "refresh_token",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Escopos solicitados (opcional para `client_credentials`).",
+                          "key": "scope",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed.\",\n  \"error_uri\": \"https://LQEKQhcHWJSCnJCfLcqBxBRv.gsTY6L+ucygmcHX8f2xkYv-Pne6VAUlLI31Zwxxls\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Token Endpoint with Code",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "password",
+                      "value": "ecommerce123",
+                      "type": "string"
+                    },
+                    {
+                      "key": "username",
+                      "value": "algashop-ecommerce-web",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code"
+                    },
+                    {
+                      "description": "Obrigatório para `authorization_code`.",
+                      "key": "code",
+                      "value": "ncTTrGGFZKYlOHgHH4Ipr-XvTcqmydDnul-zFhLI9lg93eiSyOTkQ2MhhXCKSo1wim7dh7Lrh0hvJl6zkLt-QYYV7l_ecEFv8S-MHKP00gab7tndFKhPdOCPWI_ExRID"
+                    },
+                    {
+                      "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                      "key": "redirect_uri",
+                      "value": "http://algashop-ecommerce:9080/login/oauth2/code/algashop-ecommerce-web"
+                    },
+                    {
+                      "description": "Obrigatório para `authorization_code` com PKCE.",
+                      "key": "code_verifier",
+                      "value": "string",
+                      "disabled": true
+                    },
+                    {
+                      "description": "Obrigatório para `refresh_token`.",
+                      "key": "refresh_token",
+                      "value": "string",
+                      "disabled": true
+                    },
+                    {
+                      "description": "Escopos solicitados (opcional para `client_credentials`).",
+                      "key": "scope",
+                      "value": "orders:read orders:write"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                },
+                "description": "Emite Access Token, Refresh Token e/ou ID Token.\nSuporta os grant types:\n- `authorization_code`\n- `client_credentials`\n- `refresh_token`\n\nAutenticação do cliente via `Authorization: Basic`.\n"
+              },
+              "response": [
+                {
+                  "name": "Token emitido com sucesso.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code`.",
+                          "key": "code",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` com PKCE.",
+                          "key": "code_verifier",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `refresh_token`.",
+                          "key": "refresh_token",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Escopos solicitados (opcional para `client_credentials`).",
+                          "key": "scope",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 300,\n  \"refresh_token\": \"string\",\n  \"scope\": \"openid profile email\",\n  \"id_token\": \"string\"\n}"
+                },
+                {
+                  "name": "Resposta de erro OAuth2.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code`.",
+                          "key": "code",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` com PKCE.",
+                          "key": "code_verifier",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `refresh_token`.",
+                          "key": "refresh_token",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Escopos solicitados (opcional para `client_credentials`).",
+                          "key": "scope",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed.\",\n  \"error_uri\": \"https://LQEKQhcHWJSCnJCfLcqBxBRv.gsTY6L+ucygmcHX8f2xkYv-Pne6VAUlLI31Zwxxls\"\n}"
+                },
+                {
+                  "name": "Autenticação do cliente falhou ou token inválido.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code`.",
+                          "key": "code",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` com PKCE.",
+                          "key": "code_verifier",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `refresh_token`.",
+                          "key": "refresh_token",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Escopos solicitados (opcional para `client_credentials`).",
+                          "key": "scope",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed.\",\n  \"error_uri\": \"https://LQEKQhcHWJSCnJCfLcqBxBRv.gsTY6L+ucygmcHX8f2xkYv-Pne6VAUlLI31Zwxxls\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Token Endpoint with Refresh Token",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "grant_type",
+                      "value": "refresh_token"
+                    },
+                    {
+                      "description": "Obrigatório para `authorization_code`.",
+                      "key": "code",
+                      "value": "string",
+                      "disabled": true
+                    },
+                    {
+                      "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                      "key": "redirect_uri",
+                      "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client",
+                      "disabled": true
+                    },
+                    {
+                      "description": "Obrigatório para `authorization_code` com PKCE.",
+                      "key": "code_verifier",
+                      "value": "string",
+                      "disabled": true
+                    },
+                    {
+                      "description": "Obrigatório para `refresh_token`.",
+                      "key": "refresh_token",
+                      "value": "FGSew7t89CMX-c4JLc5xGnQ2mPVjyGXYc3q7eMrB-bl8qylPTaRvoaL5HKmWdDPM6mg6a-wSJGPEXoyy0GQSRp5yQBngpxCUpth0CdCWd31CN6R9YYhdAdnT6KCYG5vt"
+                    },
+                    {
+                      "description": "Escopos solicitados (opcional para `client_credentials`).",
+                      "key": "scope",
+                      "value": "products:read products:write shopping-carts:read shopping-carts:write customers:read customers:write categories:read categories:write",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                },
+                "description": "Emite Access Token, Refresh Token e/ou ID Token.\nSuporta os grant types:\n- `authorization_code`\n- `client_credentials`\n- `refresh_token`\n\nAutenticação do cliente via `Authorization: Basic`.\n"
+              },
+              "response": [
+                {
+                  "name": "Token emitido com sucesso.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code`.",
+                          "key": "code",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` com PKCE.",
+                          "key": "code_verifier",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `refresh_token`.",
+                          "key": "refresh_token",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Escopos solicitados (opcional para `client_credentials`).",
+                          "key": "scope",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 300,\n  \"refresh_token\": \"string\",\n  \"scope\": \"openid profile email\",\n  \"id_token\": \"string\"\n}"
+                },
+                {
+                  "name": "Resposta de erro OAuth2.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code`.",
+                          "key": "code",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` com PKCE.",
+                          "key": "code_verifier",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `refresh_token`.",
+                          "key": "refresh_token",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Escopos solicitados (opcional para `client_credentials`).",
+                          "key": "scope",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed.\",\n  \"error_uri\": \"https://LQEKQhcHWJSCnJCfLcqBxBRv.gsTY6L+ucygmcHX8f2xkYv-Pne6VAUlLI31Zwxxls\"\n}"
+                },
+                {
+                  "name": "Autenticação do cliente falhou ou token inválido.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code`.",
+                          "key": "code",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` se enviado na requisição de autorização.",
+                          "key": "redirect_uri",
+                          "value": "http://127.0.0.1:4200/login/oauth2/code/oidc-client"
+                        },
+                        {
+                          "description": "Obrigatório para `authorization_code` com PKCE.",
+                          "key": "code_verifier",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Obrigatório para `refresh_token`.",
+                          "key": "refresh_token",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Escopos solicitados (opcional para `client_credentials`).",
+                          "key": "scope",
+                          "value": "string"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed.\",\n  \"error_uri\": \"https://LQEKQhcHWJSCnJCfLcqBxBRv.gsTY6L+ucygmcHX8f2xkYv-Pne6VAUlLI31Zwxxls\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "introspect",
+          "item": [
+            {
+              "name": "Token Introspection Endpoint",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "O token a ser introspecionado.",
+                      "key": "token",
+                      "value": "string"
+                    },
+                    {
+                      "key": "token_type_hint",
+                      "value": "refresh_token"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/introspect",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "introspect"
+                  ]
+                },
+                "description": "Permite a um Resource Server verificar a validade e os metadados de um token opaco.\nEspecificado em **RFC 7662**.\nRequer autenticação do cliente.\n"
+              },
+              "response": [
+                {
+                  "name": "Resultado da introspecção.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "O token a ser introspecionado.",
+                          "key": "token",
+                          "value": "string"
+                        },
+                        {
+                          "key": "token_type_hint",
+                          "value": "refresh_token"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/introspect",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "introspect"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"active\": true,\n  \"scope\": \"string\",\n  \"client_id\": \"string\",\n  \"username\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"exp\": 2355,\n  \"iat\": 6815,\n  \"nbf\": 1622,\n  \"sub\": \"string\",\n  \"aud\": [\n    \"string\",\n    \"string\"\n  ],\n  \"iss\": \"https://qjwFcAMGCFGOsBuVSHMDWeOvOnkfNloW.tfdISb.i,e7o3RG.k8K+H8yGwuJRPdTnDJlp2qVDPT3QHjsCBHsOvJPmtOelJDci\",\n  \"jti\": \"string\"\n}"
+                },
+                {
+                  "name": "Autenticação do cliente falhou ou token inválido.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "O token a ser introspecionado.",
+                          "key": "token",
+                          "value": "string"
+                        },
+                        {
+                          "key": "token_type_hint",
+                          "value": "refresh_token"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/introspect",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "introspect"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed.\",\n  \"error_uri\": \"https://LQEKQhcHWJSCnJCfLcqBxBRv.gsTY6L+ucygmcHX8f2xkYv-Pne6VAUlLI31Zwxxls\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "revoke",
+          "item": [
+            {
+              "name": "Token Revocation Endpoint",
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "Token a ser revogado.",
+                      "key": "token",
+                      "value": "string"
+                    },
+                    {
+                      "key": "token_type_hint",
+                      "value": "access_token"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/revoke",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "revoke"
+                  ]
+                },
+                "description": "Revoga um access token ou refresh token.\nEspecificado em **RFC 7009**.\nRequer autenticação do cliente.\n"
+              },
+              "response": [
+                {
+                  "name": "Token revogado com sucesso (corpo vazio).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "Token a ser revogado.",
+                          "key": "token",
+                          "value": "string"
+                        },
+                        {
+                          "key": "token_type_hint",
+                          "value": "access_token"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/revoke",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "revoke"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Resposta de erro OAuth2.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "Token a ser revogado.",
+                          "key": "token",
+                          "value": "string"
+                        },
+                        {
+                          "key": "token_type_hint",
+                          "value": "access_token"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/revoke",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "revoke"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed.\",\n  \"error_uri\": \"https://LQEKQhcHWJSCnJCfLcqBxBRv.gsTY6L+ucygmcHX8f2xkYv-Pne6VAUlLI31Zwxxls\"\n}"
+                },
+                {
+                  "name": "Autenticação do cliente falhou ou token inválido.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "Token a ser revogado.",
+                          "key": "token",
+                          "value": "string"
+                        },
+                        {
+                          "key": "token_type_hint",
+                          "value": "access_token"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/revoke",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "revoke"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Client authentication failed.\",\n  \"error_uri\": \"https://LQEKQhcHWJSCnJCfLcqBxBRv.gsTY6L+ucygmcHX8f2xkYv-Pne6VAUlLI31Zwxxls\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "jwks",
+          "item": [
+            {
+              "name": "JWK Set Endpoint",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/jwks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "jwks"
+                  ]
+                },
+                "description": "Expõe as chaves públicas utilizadas para assinar tokens JWT.\nUsado pelos Resource Servers e clientes para validação local de tokens.\nEspecificado em **RFC 7517**.\n"
+              },
+              "response": [
+                {
+                  "name": "Conjunto de chaves JWK.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/jwks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "jwks"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"keys\": [\n    {\n      \"kty\": \"RSA\",\n      \"use\": \"sig\",\n      \"kid\": \"1\",\n      \"alg\": \"RS256\",\n      \"n\": \"string\",\n      \"e\": \"AQAB\",\n      \"x5c\": [\n        \"string\",\n        \"string\"\n      ],\n      \"x5t\": \"string\",\n      \"x5t#S256\": \"string\"\n    },\n    {\n      \"kty\": \"RSA\",\n      \"use\": \"sig\",\n      \"kid\": \"1\",\n      \"alg\": \"RS256\",\n      \"n\": \"string\",\n      \"e\": \"AQAB\",\n      \"x5c\": [\n        \"string\",\n        \"string\"\n      ],\n      \"x5t\": \"string\",\n      \"x5t#S256\": \"string\"\n    }\n  ]\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": ".well-known",
+      "item": [
+        {
+          "name": "oauth-authorization-server",
+          "item": [
+            {
+              "name": "OAuth2 Authorization Server Metadata",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/.well-known/oauth-authorization-server",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ".well-known",
+                    "oauth-authorization-server"
+                  ]
+                },
+                "description": "Retorna os metadados do Authorization Server.\nEspecificado em **RFC 8414**.\n"
+              },
+              "response": [
+                {
+                  "name": "Metadados do servidor de autorização.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/.well-known/oauth-authorization-server",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ".well-known",
+                        "oauth-authorization-server"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"issuer\": \"http://localhost:9000\",\n  \"authorization_endpoint\": \"http://localhost:9000/oauth2/authorize\",\n  \"token_endpoint\": \"http://localhost:9000/oauth2/token\",\n  \"jwks_uri\": \"http://localhost:9000/oauth2/jwks\",\n  \"response_types_supported\": [\n    \"code\"\n  ],\n  \"subject_types_supported\": [\n    \"public\"\n  ],\n  \"id_token_signing_alg_values_supported\": [\n    \"RS256\"\n  ],\n  \"device_authorization_endpoint\": \"http://localhost:9000/oauth2/device_authorization\",\n  \"token_endpoint_auth_methods_supported\": [\n    \"client_secret_basic\",\n    \"client_secret_post\",\n    \"client_secret_jwt\",\n    \"private_key_jwt\"\n  ],\n  \"scopes_supported\": [\n    \"openid\",\n    \"profile\",\n    \"email\",\n    \"address\",\n    \"phone\"\n  ],\n  \"grant_types_supported\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\",\n    \"urn:ietf:params:oauth:grant-type:device_code\"\n  ],\n  \"revocation_endpoint\": \"http://localhost:9000/oauth2/revoke\",\n  \"revocation_endpoint_auth_methods_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"introspection_endpoint\": \"http://localhost:9000/oauth2/introspect\",\n  \"introspection_endpoint_auth_methods_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"code_challenge_methods_supported\": [\n    \"S256\"\n  ],\n  \"tls_client_certificate_bound_access_tokens\": true\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8081"
+    },
+    {
+      "key": "basicAuthUsername",
+      "value": ""
+    },
+    {
+      "key": "basicAuthPassword",
+      "value": ""
+    }
+  ]
+}

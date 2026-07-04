@@ -1,0 +1,2390 @@
+{
+  "info": {
+    "_postman_id": "68a11760-b7e7-4d27-9c74-84c0edc9877f",
+    "name": "AlgaShop - Product Catalog API",
+    "description": "Contact Support:\n Name: AlgaShop\n Email: contact@algashop.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33462063"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "products",
+              "item": [
+                {
+                  "name": "{productId}",
+                  "item": [
+                    {
+                      "name": "enable",
+                      "item": [
+                        {
+                          "name": "/api/v1/products/:productId/enable",
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId",
+                                  "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/enable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "enable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId",
+                                      "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            },
+                            {
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/enable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "enable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId",
+                                      "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "/api/v1/products/:productId/enable",
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId",
+                                  "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/enable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "enable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId",
+                                      "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            },
+                            {
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/enable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "enable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId",
+                                      "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "restock",
+                      "item": [
+                        {
+                          "name": "/api/v1/products/:productId/restock",
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"quantity\": 10\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId/restock",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId",
+                                "restock"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"quantity\": 10\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/restock",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "restock"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            },
+                            {
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"quantity\": 10\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/restock",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "restock"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "withdraw",
+                      "item": [
+                        {
+                          "name": "/api/v1/products/:productId/withdraw",
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"quantity\": 10\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId/withdraw",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId",
+                                "withdraw"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"quantity\": 10\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/withdraw",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "withdraw"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "body": ""
+                            },
+                            {
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"quantity\": 10\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/withdraw",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "withdraw"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "images",
+                      "item": [
+                        {
+                          "name": "{imageId}",
+                          "item": [
+                            {
+                              "name": "primary",
+                              "item": [
+                                {
+                                  "name": "/api/v1/products/:productId/images/:imageId/primary",
+                                  "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/products/:productId/images/:imageId/primary",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "products",
+                                        ":productId",
+                                        "images",
+                                        ":imageId",
+                                        "primary"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "productId",
+                                          "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                        },
+                                        {
+                                          "key": "imageId",
+                                          "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "name": "OK",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v1/products/:productId/images/:imageId/primary",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v1",
+                                            "products",
+                                            ":productId",
+                                            "images",
+                                            ":imageId",
+                                            "primary"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "productId",
+                                              "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                            },
+                                            {
+                                              "key": "imageId",
+                                              "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "body": ""
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "/api/v1/products/:productId/images/:imageId",
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/images/:imageId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "images",
+                                    ":imageId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId",
+                                      "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                    },
+                                    {
+                                      "key": "imageId",
+                                      "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/products/:productId/images/:imageId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "products",
+                                        ":productId",
+                                        "images",
+                                        ":imageId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "productId",
+                                          "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                        },
+                                        {
+                                          "key": "imageId",
+                                          "value": "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n  \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"url\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n}"
+                                }
+                              ]
+                            },
+                            {
+                              "name": "/api/v1/products/:productId/images/:imageId",
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/images/:imageId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "images",
+                                    ":imageId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "key": "imageId",
+                                      "value": "1"
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "name": "OK",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/products/:productId/images/:imageId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "products",
+                                        ":productId",
+                                        "images",
+                                        ":imageId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "productId",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "key": "imageId",
+                                          "value": "1"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "body": ""
+                                },
+                                {
+                                  "name": "Resource not found",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v1/products/:productId/images/:imageId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v1",
+                                        "products",
+                                        ":productId",
+                                        "images",
+                                        ":imageId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "productId",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "key": "imageId",
+                                          "value": "1"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/problem+json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "/api/v1/products/:productId/images",
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"remoteFileName\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId/images",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId",
+                                "images"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId",
+                                  "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"remoteFileName\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/images",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "images"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId",
+                                      "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n  \"url\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n}"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "/api/v1/products/:productId/images",
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId/images",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId",
+                                "images"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId",
+                                  "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v1/products/:productId/images",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "images"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId",
+                                      "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "[\n  {\n    \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"url\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n  },\n  {\n    \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"url\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n  }\n]"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "/api/v1/products/:productId",
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/products/:productId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "products",
+                            ":productId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "productId",
+                              "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId",
+                                  "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n  \"addedAt\": \"2024-04-04T00:12:45Z\",\n  \"name\": \"Deep Diver X11D Gamer laptop\",\n  \"brand\": \"Deep Diver\",\n  \"slug\": \"deep-diver-x11d-gamer-laptop\",\n  \"regularPrice\": 19.99,\n  \"salePrice\": 13.99,\n  \"hasDiscount\": true,\n  \"inStock\": true,\n  \"enabled\": true,\n  \"quantityInStock\": 125,\n  \"discountPercentageRounded\": 35,\n  \"category\": {\n    \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n    \"name\": \"Computer Components\",\n    \"slug\": \"computer-components\",\n    \"enabled\": true\n  },\n  \"mainImage\": {\n    \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"url\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n  },\n  \"description\": \"A Gamer Laptop to fit your needs! - RAM: 32GB - SSD: 1TB - Screen size: 5/16\\\" - Resolution: 1920x1080\\n\"\n}"
+                        },
+                        {
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId",
+                                  "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "/api/v1/products/:productId",
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"Deep Diver X11D Gamer laptop\",\n  \"enabled\": true,\n  \"brand\": \"Deep Diver\",\n  \"regularPrice\": 19.99,\n  \"salePrice\": 13.99,\n  \"categoryId\": \"f5ab7a1e-37da-41e1-892b-a1d38275c2f2\",\n  \"description\": \"A Gamer Laptop to fit your needs! - RAM: 32GB - SSD: 1TB - Screen size: 5/16\\\" - Resolution: 1920x1080\\n\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/products/:productId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "products",
+                            ":productId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "productId",
+                              "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"Deep Diver X11D Gamer laptop\",\n  \"enabled\": true,\n  \"brand\": \"Deep Diver\",\n  \"regularPrice\": 19.99,\n  \"salePrice\": 13.99,\n  \"categoryId\": \"f5ab7a1e-37da-41e1-892b-a1d38275c2f2\",\n  \"description\": \"A Gamer Laptop to fit your needs! - RAM: 32GB - SSD: 1TB - Screen size: 5/16\\\" - Resolution: 1920x1080\\n\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId",
+                                  "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n  \"addedAt\": \"2024-04-04T00:12:45Z\",\n  \"name\": \"Deep Diver X11D Gamer laptop\",\n  \"brand\": \"Deep Diver\",\n  \"slug\": \"deep-diver-x11d-gamer-laptop\",\n  \"regularPrice\": 19.99,\n  \"salePrice\": 13.99,\n  \"hasDiscount\": true,\n  \"inStock\": true,\n  \"enabled\": true,\n  \"quantityInStock\": 125,\n  \"discountPercentageRounded\": 35,\n  \"category\": {\n    \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n    \"name\": \"Computer Components\",\n    \"slug\": \"computer-components\",\n    \"enabled\": true\n  },\n  \"mainImage\": {\n    \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"url\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n  },\n  \"description\": \"A Gamer Laptop to fit your needs! - RAM: 32GB - SSD: 1TB - Screen size: 5/16\\\" - Resolution: 1920x1080\\n\"\n}"
+                        },
+                        {
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"Deep Diver X11D Gamer laptop\",\n  \"enabled\": true,\n  \"brand\": \"Deep Diver\",\n  \"regularPrice\": 19.99,\n  \"salePrice\": 13.99,\n  \"categoryId\": \"f5ab7a1e-37da-41e1-892b-a1d38275c2f2\",\n  \"description\": \"A Gamer Laptop to fit your needs! - RAM: 32GB - SSD: 1TB - Screen size: 5/16\\\" - Resolution: 1920x1080\\n\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/products/:productId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "products",
+                                ":productId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId",
+                                  "value": "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/v1/products",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "eyJraWQiOiI1YWZhOTE0My01MWUzLTRjYTItODA2YS03NjIzN2U5ZTUyYjkiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbGdhc2hvcC10ZXN0IiwiYXVkIjoiYWxnYXNob3AtdGVzdCIsIm5iZiI6MTc4MzAyMTE3MSwic2NvcGUiOlsiY3VzdG9tZXJzOndyaXRlIiwic2hvcHBpbmctY2FydHM6cmVhZCIsImNhdGVnb3JpZXM6d3JpdGUiLCJwcm9kdWN0czpyZWFkIiwiY2F0ZWdvcmllczpyZWFkIiwic2hvcHBpbmctY2FydHM6d3JpdGUiLCJjdXN0b21lcnM6cmVhZCIsInByb2R1Y3RzOndyaXRlIl0sImlzcyI6Imh0dHA6Ly9hbGdhc2hvcC1hdXRob3JpemF0aW9uLXNlcnZlcjo4MDgxIiwiZXhwIjoxNzgzMDIyMDcxLCJpYXQiOjE3ODMwMjExNzEsImp0aSI6IjRiMzU3Nzg2LTliNDQtNDBhYy05ZWUwLTYyNWZiOTRjZGRhOCJ9.XEOVzOzmF0I_299DkD2ybdkxEsIOf6VZj8ZrAyK7rDpDOlpOjoTwESUkb5nzWxqBkmNYWikjU9hMMRmtmfKe2lCnD3GOstvPmbU9zosLJURC3xBNE7lBhRnTjPVcgu8x2mGRIDw-vgGOgUsQJ9Jj2yj2yN5X0x_Iwmr19i64QkLk8twMwVa3ymYtvvs5NL_WpS91SXBNnjcYJBjjlRAz1yIGzxLsKpIbcINCM442TlUgSd9EKKvtKKvsewGghBgjj6rds46iEtqDbc_vBv-MUGphbxWaIZ1Nf23CkN7_EJHkTPhSqpRF4QP33SLQto-k5MTgN94VfIokgHzk3kx_uA",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "products"
+                      ],
+                      "query": [
+                        {
+                          "key": "inStock",
+                          "value": "true",
+                          "description": "Only products in stock or out of stock",
+                          "disabled": true
+                        },
+                        {
+                          "key": "priceFrom",
+                          "value": "100.99",
+                          "description": "Minimum price",
+                          "disabled": true
+                        },
+                        {
+                          "key": "priceTo",
+                          "value": "100.99",
+                          "description": "Maximum price",
+                          "disabled": true
+                        },
+                        {
+                          "key": "categoriesId",
+                          "value": "9e965c97-93c2-4d71-970f-0e8bf24ba0fb",
+                          "description": "Categories id",
+                          "disabled": true
+                        },
+                        {
+                          "key": "addedAtFrom",
+                          "value": "2024-09-01",
+                          "description": "Initial product creation date",
+                          "disabled": true
+                        },
+                        {
+                          "key": "addedAtTo",
+                          "value": "2024-09-01",
+                          "description": "End product creation date",
+                          "disabled": true
+                        },
+                        {
+                          "key": "page",
+                          "value": "8430.68986044374",
+                          "description": "Page number",
+                          "disabled": true
+                        },
+                        {
+                          "key": "size",
+                          "value": "10",
+                          "description": "Page size",
+                          "disabled": true
+                        },
+                        {
+                          "key": "sortByProperty",
+                          "value": "name",
+                          "description": "Order by property",
+                          "disabled": true
+                        },
+                        {
+                          "key": "sortDirection",
+                          "value": "desc",
+                          "description": "Direction",
+                          "disabled": true
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/products?term=Notebook Gamer&hasDiscount=true&enabled=true&inStock=true&priceFrom=100.99&priceTo=100.99&categoriesId=9e965c97-93c2-4d71-970f-0e8bf24ba0fb&addedAtFrom=2024-09-01&addedAtTo=2024-09-01&page=8430.68986044374&size=10&sortByProperty=name&sortDirection=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "products"
+                          ],
+                          "query": [
+                            {
+                              "description": "Search term for multiple fields, like name, description, brand.",
+                              "key": "term",
+                              "value": "Notebook Gamer"
+                            },
+                            {
+                              "description": "Products with discount",
+                              "key": "hasDiscount",
+                              "value": "true"
+                            },
+                            {
+                              "description": "Only enabled products or disabled",
+                              "key": "enabled",
+                              "value": "true"
+                            },
+                            {
+                              "description": "Only products in stock or out of stock",
+                              "key": "inStock",
+                              "value": "true"
+                            },
+                            {
+                              "description": "Minimum price",
+                              "key": "priceFrom",
+                              "value": "100.99"
+                            },
+                            {
+                              "description": "Maximum price",
+                              "key": "priceTo",
+                              "value": "100.99"
+                            },
+                            {
+                              "description": "Categories id",
+                              "key": "categoriesId",
+                              "value": "9e965c97-93c2-4d71-970f-0e8bf24ba0fb"
+                            },
+                            {
+                              "description": "Initial product creation date",
+                              "key": "addedAtFrom",
+                              "value": "2024-09-01"
+                            },
+                            {
+                              "description": "End product creation date",
+                              "key": "addedAtTo",
+                              "value": "2024-09-01"
+                            },
+                            {
+                              "description": "Page number",
+                              "key": "page",
+                              "value": "8430.68986044374"
+                            },
+                            {
+                              "description": "Page size",
+                              "key": "size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order by property",
+                              "key": "sortByProperty",
+                              "value": "name"
+                            },
+                            {
+                              "description": "Direction",
+                              "key": "sortDirection",
+                              "value": "desc"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"number\": 2,\n  \"size\": 9,\n  \"totalPages\": 15,\n  \"totalElements\": 442,\n  \"content\": [\n    {\n      \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n      \"addedAt\": \"2024-04-04T00:12:45Z\",\n      \"name\": \"Deep Diver X11D Gamer laptop\",\n      \"brand\": \"Deep Diver\",\n      \"slug\": \"deep-diver-x11d-gamer-laptop\",\n      \"regularPrice\": 19.99,\n      \"salePrice\": 13.99,\n      \"hasDiscount\": true,\n      \"inStock\": true,\n      \"enabled\": true,\n      \"quantityInStock\": 125,\n      \"discountPercentageRounded\": 35,\n      \"category\": {\n        \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n        \"name\": \"Computer Components\",\n        \"slug\": \"computer-components\",\n        \"enabled\": true\n      },\n      \"mainImage\": {\n        \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n        \"url\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n      },\n      \"shortDescription\": \"A Gamer Laptop to fit your needs!...\\n\"\n    },\n    {\n      \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n      \"addedAt\": \"2024-04-04T00:12:45Z\",\n      \"name\": \"Deep Diver X11D Gamer laptop\",\n      \"brand\": \"Deep Diver\",\n      \"slug\": \"deep-diver-x11d-gamer-laptop\",\n      \"regularPrice\": 19.99,\n      \"salePrice\": 13.99,\n      \"hasDiscount\": true,\n      \"inStock\": true,\n      \"enabled\": true,\n      \"quantityInStock\": 125,\n      \"discountPercentageRounded\": 35,\n      \"category\": {\n        \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n        \"name\": \"Computer Components\",\n        \"slug\": \"computer-components\",\n        \"enabled\": true\n      },\n      \"mainImage\": {\n        \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n        \"url\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n      },\n      \"shortDescription\": \"A Gamer Laptop to fit your needs!...\\n\"\n    }\n  ]\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/v1/products",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "eyJraWQiOiI1YWZhOTE0My01MWUzLTRjYTItODA2YS03NjIzN2U5ZTUyYjkiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbGdhc2hvcC10ZXN0IiwiYXVkIjoiYWxnYXNob3AtdGVzdCIsIm5iZiI6MTc4MzAyMDM0Niwic2NvcGUiOlsiY3VzdG9tZXJzOndyaXRlIiwic2hvcHBpbmctY2FydHM6cmVhZCIsInByb2R1Y3RzOnJlYWQiLCJzaG9wcGluZy1jYXJ0czp3cml0ZSIsImN1c3RvbWVyczpyZWFkIiwicHJvZHVjdHM6d3JpdGUiXSwiaXNzIjoiaHR0cDovL2FsZ2FzaG9wLWF1dGhvcml6YXRpb24tc2VydmVyOjgwODEiLCJleHAiOjE3ODMwMjEyNDYsImlhdCI6MTc4MzAyMDM0NiwianRpIjoiYzY3MjI3MzUtMTVmMi00Zjk3LTk4N2MtZGZlNTM1YjhhODk1In0.V1gXx8zMli3m-9fLGyJtjYrFtUTXJOe5opFMjkWEiCwc-wgcTjeTdrkVS12-91JxkRDrnnkJsDQGSkZPzg5I208WaNwoKpRTTSmh97AaNNPHT1NABol6Imsl1CO3NkLNkbSvPa715ipgYPB2ebz-zeVlXXWYRCyo1P_IIhZKt7n7N4uUw8xW18xJQSsHUtP4zlSzqux2XmWJMe_CX-vD_QN_YkXdo661tKd17b0d5EKXCD--XCqx1fqO_xaC434bVF_rFl7-QNduEwOcbtTMZ7bi8t0jckDh5iYsSvdyfLiNME8V75PMizpAJFj-jw_pfL7RbU2iMP7egfl0LAZFZQ",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "disabled": true
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"MacBook Pro 14\",\n  \"enabled\": true,\n  \"brand\": \"Apple\",\n  \"regularPrice\": 9999.99,\n  \"salePrice\": 9000.00,\n  \"categoryId\": \"019f2458-3342-7328-bce5-35cb5ac79967\",\n  \"description\": \"A Gamer Laptop to fit your needs! - RAM: 32GB - SSD: 1TB - Screen size: 5/16\\\" - Resolution: 1920x1080\\n\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "products"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"Deep Diver X11D Gamer laptop\",\n  \"enabled\": true,\n  \"brand\": \"Deep Diver\",\n  \"regularPrice\": 19.99,\n  \"salePrice\": 13.99,\n  \"categoryId\": \"f5ab7a1e-37da-41e1-892b-a1d38275c2f2\",\n  \"description\": \"A Gamer Laptop to fit your needs! - RAM: 32GB - SSD: 1TB - Screen size: 5/16\\\" - Resolution: 1920x1080\\n\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n  \"addedAt\": \"2024-04-04T00:12:45Z\",\n  \"name\": \"Deep Diver X11D Gamer laptop\",\n  \"brand\": \"Deep Diver\",\n  \"slug\": \"deep-diver-x11d-gamer-laptop\",\n  \"regularPrice\": 19.99,\n  \"salePrice\": 13.99,\n  \"hasDiscount\": true,\n  \"inStock\": true,\n  \"enabled\": true,\n  \"quantityInStock\": 125,\n  \"discountPercentageRounded\": 35,\n  \"category\": {\n    \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n    \"name\": \"Computer Components\",\n    \"slug\": \"computer-components\",\n    \"enabled\": true\n  },\n  \"mainImage\": {\n    \"id\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff\",\n    \"url\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.jpg\"\n  },\n  \"description\": \"A Gamer Laptop to fit your needs! - RAM: 32GB - SSD: 1TB - Screen size: 5/16\\\" - Resolution: 1920x1080\\n\"\n}"
+                    },
+                    {
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"Deep Diver X11D Gamer laptop\",\n  \"enabled\": true,\n  \"brand\": \"Deep Diver\",\n  \"regularPrice\": 19.99,\n  \"salePrice\": 13.99,\n  \"categoryId\": \"f5ab7a1e-37da-41e1-892b-a1d38275c2f2\",\n  \"description\": \"A Gamer Laptop to fit your needs! - RAM: 32GB - SSD: 1TB - Screen size: 5/16\\\" - Resolution: 1920x1080\\n\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "categories",
+              "item": [
+                {
+                  "name": "{categoryId}",
+                  "item": [
+                    {
+                      "name": "/api/v1/categories/:categoryId",
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/categories/:categoryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "categories",
+                            ":categoryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "categoryId",
+                              "value": "f5ab7a1e-37da-41e1-892b-a1d38275c2f2"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/categories/:categoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                ":categoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "categoryId",
+                                  "value": "f5ab7a1e-37da-41e1-892b-a1d38275c2f2"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n  \"name\": \"Computer Components\",\n  \"slug\": \"computer-components\",\n  \"enabled\": true\n}"
+                        },
+                        {
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/categories/:categoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                ":categoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "categoryId",
+                                  "value": "f5ab7a1e-37da-41e1-892b-a1d38275c2f2"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "/api/v1/categories/:categoryId",
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"Computer components\",\n  \"enabled\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/categories/:categoryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "categories",
+                            ":categoryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "categoryId",
+                              "value": "f5ab7a1e-37da-41e1-892b-a1d38275c2f2"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"Computer components\",\n  \"enabled\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/categories/:categoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                ":categoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "categoryId",
+                                  "value": "f5ab7a1e-37da-41e1-892b-a1d38275c2f2"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n  \"name\": \"Computer Components\",\n  \"slug\": \"computer-components\",\n  \"enabled\": true\n}"
+                        },
+                        {
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"Computer components\",\n  \"enabled\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/categories/:categoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                ":categoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "categoryId",
+                                  "value": "f5ab7a1e-37da-41e1-892b-a1d38275c2f2"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "/api/v1/categories/:categoryId",
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/categories/:categoryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "categories",
+                            ":categoryId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "categoryId",
+                              "value": "f5ab7a1e-37da-41e1-892b-a1d38275c2f2"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/categories/:categoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                ":categoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "categoryId",
+                                  "value": "f5ab7a1e-37da-41e1-892b-a1d38275c2f2"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        },
+                        {
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/categories/:categoryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "categories",
+                                ":categoryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "categoryId",
+                                  "value": "f5ab7a1e-37da-41e1-892b-a1d38275c2f2"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/v1/categories",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/categories?enabled=true&name=Laptop&page=8430.68986044374&size=10&sortByProperty=name&sortDirection=desc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "categories"
+                      ],
+                      "query": [
+                        {
+                          "key": "enabled",
+                          "value": "true",
+                          "description": "Only enabled categories"
+                        },
+                        {
+                          "key": "name",
+                          "value": "Laptop",
+                          "description": "Category name"
+                        },
+                        {
+                          "key": "page",
+                          "value": "8430.68986044374",
+                          "description": "Page number"
+                        },
+                        {
+                          "key": "size",
+                          "value": "10",
+                          "description": "Page size"
+                        },
+                        {
+                          "key": "sortByProperty",
+                          "value": "name",
+                          "description": "Order by property"
+                        },
+                        {
+                          "key": "sortDirection",
+                          "value": "desc",
+                          "description": "Direction"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/categories?enabled=true&name=Laptop&page=8430.68986044374&size=10&sortByProperty=name&sortDirection=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "categories"
+                          ],
+                          "query": [
+                            {
+                              "description": "Only enabled categories",
+                              "key": "enabled",
+                              "value": "true"
+                            },
+                            {
+                              "description": "Category name",
+                              "key": "name",
+                              "value": "Laptop"
+                            },
+                            {
+                              "description": "Page number",
+                              "key": "page",
+                              "value": "8430.68986044374"
+                            },
+                            {
+                              "description": "Page size",
+                              "key": "size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order by property",
+                              "key": "sortByProperty",
+                              "value": "name"
+                            },
+                            {
+                              "description": "Direction",
+                              "key": "sortDirection",
+                              "value": "desc"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"number\": 2,\n  \"size\": 9,\n  \"totalPages\": 15,\n  \"totalElements\": 442,\n  \"content\": [\n    {\n      \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n      \"name\": \"Computer Components\",\n      \"slug\": \"computer-components\",\n      \"enabled\": true\n    },\n    {\n      \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n      \"name\": \"Computer Components\",\n      \"slug\": \"computer-components\",\n      \"enabled\": true\n    }\n  ]\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/v1/categories",
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "eyJraWQiOiI1YWZhOTE0My01MWUzLTRjYTItODA2YS03NjIzN2U5ZTUyYjkiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhbGdhc2hvcC10ZXN0IiwiYXVkIjoiYWxnYXNob3AtdGVzdCIsIm5iZiI6MTc4MzAyMTE3MSwic2NvcGUiOlsiY3VzdG9tZXJzOndyaXRlIiwic2hvcHBpbmctY2FydHM6cmVhZCIsImNhdGVnb3JpZXM6d3JpdGUiLCJwcm9kdWN0czpyZWFkIiwiY2F0ZWdvcmllczpyZWFkIiwic2hvcHBpbmctY2FydHM6d3JpdGUiLCJjdXN0b21lcnM6cmVhZCIsInByb2R1Y3RzOndyaXRlIl0sImlzcyI6Imh0dHA6Ly9hbGdhc2hvcC1hdXRob3JpemF0aW9uLXNlcnZlcjo4MDgxIiwiZXhwIjoxNzgzMDIyMDcxLCJpYXQiOjE3ODMwMjExNzEsImp0aSI6IjRiMzU3Nzg2LTliNDQtNDBhYy05ZWUwLTYyNWZiOTRjZGRhOCJ9.XEOVzOzmF0I_299DkD2ybdkxEsIOf6VZj8ZrAyK7rDpDOlpOjoTwESUkb5nzWxqBkmNYWikjU9hMMRmtmfKe2lCnD3GOstvPmbU9zosLJURC3xBNE7lBhRnTjPVcgu8x2mGRIDw-vgGOgUsQJ9Jj2yj2yN5X0x_Iwmr19i64QkLk8twMwVa3ymYtvvs5NL_WpS91SXBNnjcYJBjjlRAz1yIGzxLsKpIbcINCM442TlUgSd9EKKvtKKvsewGghBgjj6rds46iEtqDbc_vBv-MUGphbxWaIZ1Nf23CkN7_EJHkTPhSqpRF4QP33SLQto-k5MTgN94VfIokgHzk3kx_uA",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Computer components\",\n  \"enabled\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "categories"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"Computer components\",\n  \"enabled\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/categories",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "categories"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"id\": \"fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc\",\n  \"name\": \"Computer Components\",\n  \"slug\": \"computer-components\",\n  \"enabled\": true\n}"
+                    },
+                    {
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"Computer components\",\n  \"enabled\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/categories",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "categories"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"status\": 400,\n  \"type\": \"/errors/invalid-data\",\n  \"title\": \"Invalid fields\",\n  \"instance\": \"/api/v1/customers\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fields\": {}\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "upload-requests",
+              "item": [
+                {
+                  "name": "/api/v1/upload-requests",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"originalFileName\": \"image-12.png\",\n  \"contentLength\": 13422\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/upload-requests",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "upload-requests"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"originalFileName\": \"image-12.png\",\n  \"contentLength\": 13422\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/upload-requests",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "upload-requests"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"remoteFileName\": \"28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.png\",\n  \"contentLength\": 13422,\n  \"contentType\": \"image/png\",\n  \"uploadSignedUrl\": \"https://images.algashop.com/28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff.png\"\n}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8083"
+    }
+  ]
+}
