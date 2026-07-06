@@ -3,15 +3,17 @@ openapi: 3.0.3
 info:
   title: AlgaShop - Authorization Server
   description: |
-    Especificação OpenAPI dos endpoints padrão do **Spring Authorization Server** 
-    implementando **OAuth 2.1**. 
+    Especificação OpenAPI dos endpoints padrão do **Spring Authorization Server**,
+    implementando **OAuth 2.1** e **OpenID Connect 1.0**.
 
     ### Prefixos de caminho padrão
-    | Grupo  | Prefixo   |
-    |--------|-----------|
+    | Grupo | Prefixo |
+    |-------|---------|
     | OAuth2 | `/oauth2` |
+    | OIDC | `/connect` |
+    | Discovery | `/.well-known` |
 
-  version: "1.0"
+  version: "2.0"
   contact:
     name: Spring Authorization Server Docs
     url: https://docs.spring.io/spring-security/reference/servlet/oauth2/authorization-server/index.html
@@ -25,10 +27,13 @@ tags:
     description: Endpoints principais do protocolo OAuth 2.1
   - name: Token Management
     description: Introspecção e revogação de tokens
+  - name: OIDC
+    description: Endpoints OpenID Connect 1.0
   - name: Discovery
     description: Endpoints de descoberta e metadados
 
 paths:
+
   /oauth2/authorize:
     get:
       tags: [OAuth2 Core]
@@ -114,6 +119,7 @@ paths:
             ```
             {redirect_uri}?error=access_denied&state=xyz
             ```
+
   /oauth2/token:
     post:
       tags: [OAuth2 Core]
@@ -149,7 +155,6 @@ paths:
                 redirect_uri:
                   type: string
                   format: uri
-                  example: http://127.0.0.1:4200/login/oauth2/code/oidc-client
                   description: Obrigatório para `authorization_code` se enviado na requisição de autorização.
                 code_verifier:
                   type: string
@@ -166,7 +171,7 @@ paths:
                 value:
                   grant_type: authorization_code
                   code: SplxlOBeZQQYbYS6WxSbIA
-                  redirect_uri: http://127.0.0.1:4200/login/oauth2/code/oidc-client
+                  redirect_uri: http://127.0.0.1:8080/login/oauth2/code/oidc-client
                   code_verifier: dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
               client_credentials:
                 summary: Client Credentials
@@ -189,6 +194,7 @@ paths:
           $ref: "#/components/responses/OAuth2Error"
         "401":
           $ref: "#/components/responses/UnauthorizedError"
+
   /oauth2/introspect:
     post:
       tags: [Token Management]
@@ -222,6 +228,7 @@ paths:
                 $ref: "#/components/schemas/IntrospectionResponse"
         "401":
           $ref: "#/components/responses/UnauthorizedError"
+
   /oauth2/revoke:
     post:
       tags: [Token Management]
@@ -253,6 +260,7 @@ paths:
           $ref: "#/components/responses/OAuth2Error"
         "401":
           $ref: "#/components/responses/UnauthorizedError"
+
   /oauth2/jwks:
     get:
       tags: [OAuth2 Core]
@@ -269,6 +277,101 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/JWKSet"
+
+  /userinfo:
+    get:
+      tags: [OIDC]
+      summary: UserInfo Endpoint (GET)
+      description: |
+        Retorna claims do usuário autenticado.
+        Requer escopo `openid` e um Access Token válido como Bearer.
+        Especificado em **OpenID Connect Core 1.0 §5.3**.
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Claims do usuário.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserInfoResponse"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+    post:
+      tags: [OIDC]
+      summary: UserInfo Endpoint (POST)
+      description: |
+        Alternativa POST ao endpoint UserInfo.
+        O Access Token pode ser enviado via `Authorization: Bearer` ou no body.
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+      responses:
+        "200":
+          description: Claims do usuário.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserInfoResponse"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+
+  /connect/logout:
+    get:
+      tags: [OIDC]
+      summary: OIDC RP-Initiated Logout Endpoint
+      description: |
+        Encerra a sessão do usuário no Authorization Server.
+        Especificado em **OpenID Connect RP-Initiated Logout 1.0**.
+      security: []
+      parameters:
+        - name: id_token_hint
+          in: query
+          required: false
+          schema:
+            type: string
+          description: ID Token previamente emitido para identificar o cliente e sessão.
+        - name: logout_hint
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Hint sobre o login identifier a ser encerrado.
+        - name: client_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: post_logout_redirect_uri
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uri
+          description: URI de redirecionamento pós-logout (deve estar registrado no cliente).
+          example: http://127.0.0.1:8080/
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Valor opaco retornado ao cliente após o logout.
+        - name: ui_locales
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "302":
+          description: Redirecionamento para `post_logout_redirect_uri` (se fornecido) ou página padrão.
+
   /.well-known/oauth-authorization-server:
     get:
       tags: [Discovery]
@@ -285,7 +388,24 @@ paths:
               schema:
                 $ref: "#/components/schemas/AuthorizationServerMetadata"
 
+  /.well-known/openid-configuration:
+    get:
+      tags: [Discovery]
+      summary: OpenID Provider Configuration (Discovery)
+      description: |
+        Endpoint de descoberta OIDC. Retorna os metadados do OpenID Provider.
+        Especificado em **OpenID Connect Discovery 1.0 §4**.
+      security: []
+      responses:
+        "200":
+          description: Configuração do OpenID Provider.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OIDCProviderMetadata"
+
 components:
+
   securitySchemes:
     basicAuth:
       type: http
@@ -296,6 +416,7 @@ components:
       scheme: bearer
       bearerFormat: JWT
       description: Access Token JWT emitido pelo Authorization Server.
+
   responses:
     OAuth2Error:
       description: Resposta de erro OAuth2.
@@ -309,6 +430,7 @@ components:
         application/json:
           schema:
             $ref: "#/components/schemas/OAuth2ErrorResponse"
+
   schemas:
     TokenResponse:
       type: object
@@ -414,6 +536,159 @@ components:
                 type: string
               "x5t#S256":
                 type: string
+    DeviceAuthorizationResponse:
+      type: object
+      required: [device_code, user_code, verification_uri, expires_in]
+      properties:
+        device_code:
+          type: string
+        user_code:
+          type: string
+          example: WDJB-MJHT
+        verification_uri:
+          type: string
+          format: uri
+          example: http://localhost:9000/oauth2/device_verification
+        verification_uri_complete:
+          type: string
+          format: uri
+          description: URI completa com user_code pré-preenchido.
+        expires_in:
+          type: integer
+          example: 300
+        interval:
+          type: integer
+          description: Intervalo mínimo de polling em segundos.
+          example: 5
+    UserInfoResponse:
+      type: object
+      required: [sub]
+      properties:
+        sub:
+          type: string
+          description: Subject identifier único para o usuário.
+        name:
+          type: string
+        given_name:
+          type: string
+        family_name:
+          type: string
+        middle_name:
+          type: string
+        nickname:
+          type: string
+        preferred_username:
+          type: string
+        profile:
+          type: string
+          format: uri
+        picture:
+          type: string
+          format: uri
+        website:
+          type: string
+          format: uri
+        email:
+          type: string
+          format: email
+        email_verified:
+          type: boolean
+        gender:
+          type: string
+        birthdate:
+          type: string
+        zoneinfo:
+          type: string
+          example: America/Sao_Paulo
+        locale:
+          type: string
+          example: pt-BR
+        phone_number:
+          type: string
+        phone_number_verified:
+          type: boolean
+        address:
+          type: object
+        updated_at:
+          type: integer
+    ClientRegistrationRequest:
+      type: object
+      required: [redirect_uris]
+      properties:
+        redirect_uris:
+          type: array
+          items:
+            type: string
+            format: uri
+        client_name:
+          type: string
+        token_endpoint_auth_method:
+          type: string
+          enum:
+            - client_secret_basic
+            - client_secret_post
+            - client_secret_jwt
+            - private_key_jwt
+            - none
+          example: client_secret_basic
+        grant_types:
+          type: array
+          items:
+            type: string
+          example: [authorization_code, refresh_token]
+        response_types:
+          type: array
+          items:
+            type: string
+          example: [code]
+        scope:
+          type: string
+          example: openid profile email
+        client_uri:
+          type: string
+          format: uri
+        logo_uri:
+          type: string
+          format: uri
+        contacts:
+          type: array
+          items:
+            type: string
+            format: email
+        tos_uri:
+          type: string
+          format: uri
+        policy_uri:
+          type: string
+          format: uri
+        jwks_uri:
+          type: string
+          format: uri
+        post_logout_redirect_uris:
+          type: array
+          items:
+            type: string
+            format: uri
+    ClientRegistrationResponse:
+      allOf:
+        - $ref: "#/components/schemas/ClientRegistrationRequest"
+        - type: object
+          required: [client_id]
+          properties:
+            client_id:
+              type: string
+            client_secret:
+              type: string
+            client_id_issued_at:
+              type: integer
+            client_secret_expires_at:
+              type: integer
+              description: "`0` significa que não expira."
+            registration_access_token:
+              type: string
+            registration_client_uri:
+              type: string
+              format: uri
     AuthorizationServerMetadata:
       type: object
       required:
@@ -502,6 +777,71 @@ components:
           example: [RS256]
         tls_client_certificate_bound_access_tokens:
           type: boolean
+    OIDCProviderMetadata:
+      allOf:
+        - $ref: "#/components/schemas/AuthorizationServerMetadata"
+        - type: object
+          required: [userinfo_endpoint]
+          properties:
+            userinfo_endpoint:
+              type: string
+              format: uri
+              example: http://localhost:9000/userinfo
+            end_session_endpoint:
+              type: string
+              format: uri
+              example: http://localhost:9000/connect/logout
+            registration_endpoint:
+              type: string
+              format: uri
+              example: http://localhost:9000/connect/register
+            claims_supported:
+              type: array
+              items:
+                type: string
+              example:
+                - sub
+                - iss
+                - iat
+                - exp
+                - name
+                - given_name
+                - family_name
+                - email
+                - email_verified
+                - picture
+                - locale
+                - zoneinfo
+            claims_parameter_supported:
+              type: boolean
+              example: false
+            request_parameter_supported:
+              type: boolean
+              example: false
+            request_uri_parameter_supported:
+              type: boolean
+              example: false
+            require_request_uri_registration:
+              type: boolean
+            userinfo_signing_alg_values_supported:
+              type: array
+              items:
+                type: string
+              example: [RS256]
+            id_token_signing_alg_values_supported:
+              type: array
+              items:
+                type: string
+              example: [RS256]
+            acr_values_supported:
+              type: array
+              items:
+                type: string
+            subject_types_supported:
+              type: array
+              items:
+                type: string
+              example: [public]
     OAuth2ErrorResponse:
       type: object
       required: [error]
