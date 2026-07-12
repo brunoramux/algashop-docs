@@ -1,0 +1,305 @@
+openapi: 3.0.0
+
+info:
+  title: AlgaShop - Users API
+  version: "1.0"
+
+servers:
+  - description: Development
+    url: "http://algashop-authorization-server:8081"
+  - description: Production
+    url: "https://auth.algashop.com"
+
+paths:
+  /api/v1/users/me:
+    get:
+      tags:
+        - My User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /api/v1/users/me/password-change:
+    post:
+      tags:
+        - My User
+      description: Request password change for the authenticated user.
+      responses:
+        "200":
+          description: OK
+  /api/v1/users:
+    get:
+      tags:
+        - Users
+      parameters:
+        - schema:
+            type: string
+            example: victoria.garcia@algashop.com
+          in: query
+          name: email
+          required: false
+        - schema:
+            type: string
+            example: ADMIN
+          in: query
+          name: type
+          required: false
+        - $ref: "#/components/parameters/pageNumber"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/sort"
+        - $ref: "#/components/parameters/direction"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/Page"
+                  - type: object
+                    properties:
+                      content:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/User"
+    post:
+      tags:
+        - Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        "201":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/users/{userId}:
+    get:
+      tags:
+        - Users
+      parameters:
+        - schema:
+            type: string
+          name: userId
+          in: path
+          required: true
+          example: "252bee3f-51cf-4665-b07f-bdcf4c551aa4"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    put:
+      operationId: updateUser
+      tags:
+        - Users
+      parameters:
+        - schema:
+            type: string
+          name: userId
+          in: path
+          required: true
+          example: "252bee3f-51cf-4665-b07f-bdcf4c551aa4"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserUpdateInput"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      tags:
+        - Users
+      description: Disables and anonymize an user
+      parameters:
+        - schema:
+            type: string
+          name: userId
+          in: path
+          required: true
+          example: "252bee3f-51cf-4665-b07f-bdcf4c551aa4"
+      responses:
+        204:
+          description: OK
+        404:
+          $ref: "#/components/responses/NotFound"
+
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+    BadRequest:
+      description: Invalid request
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+    InternalError:
+      description: Internal server error
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+  parameters:
+    pageNumber:
+      schema:
+        type: number
+        format: int32
+        minimum: 0
+      name: page
+      description: Page number
+      in: query
+    pageSize:
+      schema:
+        type: number
+        format: int32
+        minimum: 1
+        example: 10
+      name: size
+      description: Page size
+      in: query
+    sort:
+      schema:
+        type: string
+        example: "name"
+      name: sortByProperty
+      description: Order by property
+      in: query
+    direction:
+      schema:
+        type: string
+        example: "desc"
+      name: sortDirection
+      description: Direction
+      in: query
+  schemas:
+    ProblemDetail:
+      title: Problem
+      type: object
+      required:
+        - status
+        - type
+        - title
+        - instance
+      description: >
+        Represents an issue in communication with the API.
+        This representation model is based on RFC 7807 (Problem Details for HTTP APIs).
+      properties:
+        status:
+          type: integer
+          example: 400
+        type:
+          type: string
+          example: "/errors/invalid-data"
+        title:
+          type: string
+          example: Invalid fields
+        instance:
+          type: string
+          example: "/api/v1/customers"
+        detail:
+          type: string
+          example: One or more fields are invalid
+        fields:
+          type: object
+          description: Fields that caused the error
+    Page:
+      type: object
+      required:
+        - number
+        - size
+        - totalPages
+        - totalElements
+        - content
+      properties:
+        number:
+          type: integer
+          format: int32
+          example: 2
+        size:
+          type: number
+          format: int32
+          example: 9
+        totalPages:
+          type: integer
+          format: int32
+          example: 15
+        totalElements:
+          type: number
+          format: int32
+          example: 442
+    UserInput:
+      required:
+        - name
+        - email
+        - type
+      properties:
+        name:
+          type: string
+          example: "Victoria Garcia"
+        email:
+          type: string
+          example: "victoria.garcia@algashop.com"
+        type:
+          type: string
+    UserUpdateInput:
+      required:
+        - name
+        - type
+        - enabled
+      properties:
+        name:
+          type: string
+          example: "Victoria Garcia"
+        enabled:
+          type: boolean
+          example: true
+        type:
+          type: string
+    User:
+      required:
+        - id
+        - name
+        - email
+        - enabled
+        - type
+      properties:
+        id:
+          type: string
+          example: "380d7e70-7942-4b8d-a0e9-b93d79aa6745"
+        name:
+          type: string
+          example: "Victoria Garcia"
+        email:
+          type: string
+          example: "victoria.garcia@algashop.com"
+        enabled:
+          type: boolean
+          example: true
+        type:
+          type: string
+          example: 'ADMIN'
